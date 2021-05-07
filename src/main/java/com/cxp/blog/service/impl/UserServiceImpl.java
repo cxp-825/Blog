@@ -27,7 +27,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     UserMapper userMapper;
 
-    private static final String USER_NO_TYPE = "101"; //定义生成账号的类型为纯数字
+    //依赖修改，不需要传入生成账号的类型
+    //private static final String USER_NO_TYPE = "101"; //定义生成账号的类型为纯数字
     /**
      * 登录
      * @param vo
@@ -65,7 +66,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String userNO;
         while (true) {
             //生成账号，并和数据库中数据比对，如果和数据库中重复，则重新生成账号
-            userNO = IdWorker.getStringID(USER_NO_TYPE,10);
+            userNO = IdWorker.getStringIDWithNum(10);
             User user1 = userMapper.selectOne(new QueryWrapper<User>().eq("USER_NO", userNO));
             if (user1 != null) {
                 break;
