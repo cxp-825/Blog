@@ -27,6 +27,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * 小测试用的
+     * @return
+     */
     @RequestMapping("/hello")
     public ModelAndView  hello() {
         ModelAndView modelAndView = new ModelAndView("Login");
